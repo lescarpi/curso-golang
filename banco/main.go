@@ -1,23 +1,26 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/lescarpi/curso-golang/banco/clientes"
+	"github.com/lescarpi/curso-golang/banco/contas"
+)
 
 func main() {
 
-	contaDoGuilherme := ContaCorrente{"Guilherme",
-		589,
-		123456,
-		2000}
+	contaDoGuilherme := contas.ContaCorrente{
+		Titular: clientes.Titular{
+			Nome:      "Guilherme",
+			CPF:       "512.834.923-45",
+			Profissao: "Pintor"},
+		NumeroAgencia: 589,
+		NumeroConta:   123456}
 
-	contaDoJunior := ContaCorrente{"Junior",
-		252,
-		125156,
-		1000}
+	contaDoGuilherme.Depositar(1000)
 
-	fmt.Println("Saldo do Guilherme:", contaDoGuilherme.saldo)
-	fmt.Println("Saldo do Junior:", contaDoJunior.saldo)
-	fmt.Println(contaDoGuilherme.Transferir(500, &contaDoJunior))
-	fmt.Println("Saldo do Guilherme:", contaDoGuilherme.saldo)
-	fmt.Println("Saldo do Junior:", contaDoJunior.saldo)
+	contaDoDenis := contas.ContaPoupanca{}
+
+	fmt.Println(contaDoDenis)
 
 }

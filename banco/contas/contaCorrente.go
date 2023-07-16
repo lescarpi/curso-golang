@@ -1,10 +1,11 @@
 package contas
 
+import "github.com/lescarpi/curso-golang/banco/clientes"
+
 type ContaCorrente struct {
-	titular       string
-	numeroAgencia int
-	numeroConta   int
-	saldo         float64
+	Titular                    clientes.Titular
+	NumeroAgencia, NumeroConta int
+	saldo                      float64
 }
 
 func (c *ContaCorrente) Sacar(valor float64) string {
@@ -36,4 +37,8 @@ func (c *ContaCorrente) Transferir(valor float64, r *ContaCorrente) string {
 	c.Sacar(valor)
 	r.Depositar(valor)
 	return "Transferência realizada com sucesso!"
+}
+
+func (c *ContaCorrente) ObterSaldo() float64 {
+	return c.saldo
 }
